@@ -112,6 +112,6 @@ sort(unique(alan$month))
 sort(unique(alan$educ))
 #Sorting data.
 
-YuanWuAssignment2$s4<-aggregate(alan$rw,list(year=alan$year,month=alan$month,educ=alan$educ),mean,na.rm=TRUE)
+YuanWuAssignment2$s4<-aggregate(alan$rw,list(year=alan$year,month=alan$month,educ=alan$educ,realwage=alan$rw),mean,na.rm=TRUE)
 print(YuanWuAssignment2$s4)
 #Print the aggregated list with mean real wage for each year, month and education level.
