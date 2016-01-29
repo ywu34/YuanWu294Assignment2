@@ -105,13 +105,24 @@ print(YuanWuAssignment2$s3e)
 ##Problem 4##
 
 library(foreign)
-alan<- read.dta("https://github.com/EconomiCurtis/econ294_2015/raw/master/data/org_example.dta")
+org_example <- read.dta(
+  file = "https://github.com/EconomiCurtis/econ294_2015/raw/master/data/org_example.dta"
+)
 
-sort(unique(alan$year))
-sort(unique(alan$month))
-sort(unique(alan$educ))
-#Sorting data.
+system.time({
+  df.2 <- aggregate(
+    org_example$rw,
+    by = list(
+      year = org_example$year,
+      month = org_example$month,
+      educ = org_example$educ
+    ),
+    FUN = mean, na.rm = T
+  )
+  names(df.2)[4] <- "rw_mean"
+  
+})
 
-YuanWuAssignment2$s4<-aggregate(alan$rw,list(year=alan$year,month=alan$month,educ=alan$educ,realwage=alan$rw),mean,na.rm=TRUE)
+YuanWuAssignment2$s4<- df.2
 print(YuanWuAssignment2$s4)
 #Print the aggregated list with mean real wage for each year, month and education level.
